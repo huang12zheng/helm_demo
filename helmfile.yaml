@@ -1,0 +1,25 @@
+# repositories:
+# - name: openvpn
+  # url: https://github.com/huang12zheng/chart-openvpn
+  # url: ~/chart-openvpn
+# - name: stable
+#   # url: "https://kubernetes-charts.storage.googleapis.com"
+#   url: https://charts.helm.sh/stable
+# - name: incubator
+#   # url: "https://kubernetes-charts-incubator.storage.googleapis.com/"
+#   url: https://charts.helm.sh/incubator
+# - name: jetstack
+#   url: "https://charts.jetstack.io"
+# - name: bitnami
+#   url: "https://charts.bitnami.com/bitnami"
+# helmfiles:
+# - https://github.com/huang12zheng/chart-openvpn
+# - ./openvpn/helmfile.yaml
+releases:
+- name: vpn-c1
+  namespace: ovpn
+  # chart: git+https://github.com/huang12zheng/chart-openvpn
+  chart: /home/ubuntu/chart-openvpn
+  values:
+  - ./openvpn/values.yaml
+  wait: true

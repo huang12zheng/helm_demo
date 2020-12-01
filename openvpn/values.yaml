@@ -1,0 +1,52 @@
+# image:
+#   pullPolicy: Always
+persistence:
+  enabled: true
+  subPath: ""
+  ## A manually managed Persistent Volume and Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  # existingClaim: openvpn-pvc
+  qcloudCbsId: disk-0mr48u75
+
+service:
+  type: NodePort
+  externalPort: 1194
+  internalPort: 1194
+  # hostPort: 443
+  externalIPs: []
+  nodePort: 32085
+openvpn:
+  OVPN_PROTO: udp
+  useCrl: true
+  taKey: true
+  passPhrase: caca
+  ca_input_extra: "\n\n\n\n\n\n" # for check easyrsa input
+  vars: |-
+    set_var EASYRSA_DN	"org"
+    set_var EASYRSA_REQ_COUNTRY	"CN"
+    set_var EASYRSA_REQ_PROVINCE	"ZheJiang"
+    set_var EASYRSA_REQ_CITY	"HangZhou"
+    set_var EASYRSA_REQ_ORG	"ZhiFou Co"
+    set_var EASYRSA_REQ_EMAIL	"805104533@qq.com"
+    set_var EASYRSA_REQ_OU		"ZhiFou"
+    set_var EASYRSA_ALGO		ed
+    set_var EASYRSA_CURVE ed448
+  # ca_input_extra: ca
+  # vars: |-
+  #   set_var EASYRSA_DN "cn_only"
+  #   set_var EASYRSA_ALGO ed
+  #   set_var EASYRSA_CURVE ed448
+  # ca_input_extra: "\n\n\n\n\n\n"
+  # vars: |-
+  #   set_var EASYRSA_DN "org"
+  #   set_var EASYRSA_REQ_COUNTRY "CN"
+  #   set_var EASYRSA_REQ_PROVINCE "ZheJiang"
+  #   set_var EASYRSA_REQ_CITY "HangZhou"
+  #   set_var EASYRSA_REQ_ORG "ZhiFou Co"
+  #   set_var EASYRSA_REQ_EMAIL "805104533@qq.com"
+  #   set_var EASYRSA_REQ_OU "ZhiFou"
+  #   set_var EASYRSA_ALGO ed
+  #   set_var EASYRSA_CURVE ed448
+  # base64Var: 
+      
